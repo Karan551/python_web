@@ -1,1 +1,4 @@
 .venv
+icoder/__pycache__
+blog/__pycache__
+home/__pycache__
