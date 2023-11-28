@@ -1,5 +1,70 @@
-{% extends "home/base.html" %}
-{% block title %}Contact{% endblock title %}
-{% block body %}
-<h2>This is a contact webpage.</h2>
+{% extends "home/base.html" %} {% block title %}Contact{% endblock title %}
+{%block body %} {% block css %}
+<style>
+  .important-field {
+    color: red;
+  }
+</style>
+
+{% endblock css %}
+<div class="container">
+  <h2>Contact iCoder Admin:</h2>
+  <form>
+    <div class="mb-3">
+      <label for="name" class="form-label fw-medium fs-5"
+        >Enter Your Name:</label
+      >
+      <span class="important-field">*</span>
+      <input
+        type="text"
+        name="user_name"
+        id="name"
+        placeholder="Enter your name:"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label fw-medium fs-5">
+        Enter Your Email address:</label
+      >
+      <span class="important-field">*</span>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="name@example.com"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label fs-5 fw-medium"
+        >Enter Your Contact Number:</label
+      >
+      <span class="important-field">*</span>
+      <input
+        type="tel"
+        name="contact-number"
+        id="phone"
+        maxlength="10"
+        class="form-control"
+        placeholder="Enter your contact number:"
+        required
+      />
+    </div>
+    <div class="mb-2">
+      <label for="exampleFormControlTextarea1" class="form-label fs-5 fw-medium"
+        >Describe Your issue:</label
+      >
+      <span class="important-field">*</span>
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary btn-lg">Submit</button>
+  </form>
+</div>
 {% endblock body %}
