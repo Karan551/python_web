@@ -4,3 +4,4 @@ __pycache__/
 icoder/__pycache__/urls.cpython-311.pyc
 *.pyc
 *.pyo
+.venv
