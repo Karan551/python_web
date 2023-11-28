@@ -2,3 +2,5 @@
 __pycache__/
  icoder/__pycache__/settings.cpython-311.pyc
 icoder/__pycache__/urls.cpython-311.pyc
+*.pyc
+*.pyo
