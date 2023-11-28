@@ -10,6 +10,10 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <style>
+      {% block css %}
+      {% endblock css %}
+    </style>
   </head>
   <body>
     <nav
@@ -41,7 +45,7 @@
               <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/blog">Blog</a>
+              <a class="nav-link" href="/blog">Blog</a>
             </li>
           </ul>
           <form class="d-flex" role="search">
