@@ -9,3 +9,6 @@ class Contact(models.Model):
     user_phoneNumber = models.CharField(max_length=100)
     content = models.TextField(max_length=500)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "Message from "+self.user_name.upper()+"- " + self.user_email
