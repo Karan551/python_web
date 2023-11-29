@@ -62,7 +62,21 @@
         </div>
       </div>
     </nav>
-    {% block body %}{% endblock body %}
+    <!--This is an alert-->
+    {% for message in messages %}
+    <div
+      class="alert alert-{{message.tags}} alert-dismissible fade show mb-1"
+      role="alert" id="alert"
+    >
+      <strong>{{message}}</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    {% endfor %} {% block body %} {% endblock body %}
 
     <!--This is a js -->
     <script
@@ -70,5 +84,16 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+       <!--Jquery cdn-->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <!---->
+      {% block js %}
+      {% endblock js %}
+  
+ 
   </body>
 </html>
