@@ -5,3 +5,4 @@ icoder/__pycache__/urls.cpython-311.pyc
 *.pyc
 *.pyo
 .venv
+db.sqlite3
