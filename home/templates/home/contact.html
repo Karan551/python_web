@@ -1,15 +1,16 @@
-{% extends "home/base.html" %} {% block title %}Contact{% endblock title %}
-{%block body %} {% block css %}
-<style>
-  .important-field {
+{% extends "home/base.html" %} 
+{% block title %}Contact{% endblock title %}
+{% block css %}
+  .important-field{
     color: red;
   }
-</style>
-
 {% endblock css %}
+{% block contactActive %}active{% endblock contactActive %}
+{%block body %} 
 <div class="container">
   <h2>Contact iCoder Admin:</h2>
-  <form action="/contact" method="POST" id="contact-form">
+ <!-- action="/contact"  --> 
+  <form  method="POST" id="contact-form" action="https://script.google.com/macros/s/AKfycby06ijENFA9GN7WLmUbbdA0N7PWRUbfgUu0stCS5YUZtVCKYLNu_oGfVaDTN_5ehoPYtA/exec">
     {% csrf_token %}
     <div class="mb-3">
       <label for="user_name" class="form-label fw-medium fs-5"
@@ -25,6 +26,7 @@
         spellcheck="true"
         lang="en"
         autocomplete="off"
+        title="Enter your name:"
         required
       />
     </div>
@@ -40,6 +42,7 @@
         placeholder="name@example.com"
         name="email"
         autocomplete="off"
+        title="Enter your email:"
         required
       />
     </div>
@@ -50,12 +53,13 @@
       <span class="important-field">*</span>
       <input
         type="tel"
-        name="contact-number"
+        name="contact"
         id="phone"
         maxlength="10"
         class="form-control"
         placeholder="Enter your contact number:"
         autocomplete="off"
+        title="Enter your contact number:"
         required
       />
     </div>
@@ -69,18 +73,38 @@
         id="exampleFormControlTextarea1"
         rows="3"
         name="issue"
+        title="Enter your issue:"
         required
       ></textarea>
     </div>
-    <button type="submit" class="btn btn-outline-primary btn-lg">Submit</button>
+    <button type="submit" class="btn btn-outline-primary btn-lg" id="submit-btn">Submit</button>
   </form>
 </div>
 {% endblock body %}
 {% block js %}
 <script>
-  //let a=$("#contact-form").val()
   // To hide the alert after 5 seconds when user submite the form.
   setTimeout(() => {$("#alert").hide()
   }, 5000);
+//
+window.addEventListener("load", function() {
+  const form = document.getElementById('contact-form');
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    console.log(data)
+    const action = e.target.action;
+    fetch(action, {
+      method: 'POST',
+      body: data,
+    })
+    .then(() => {
+      alert("Success!");
+    })
+  });
+});
+
+
+
 </script>
 {% endblock js %}
