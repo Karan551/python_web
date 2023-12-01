@@ -6,3 +6,5 @@ icoder/__pycache__/urls.cpython-311.pyc
 *.pyo
 .venv
 db.sqlite3
+**/migrations/
+**/__pycache__/*.pyc
