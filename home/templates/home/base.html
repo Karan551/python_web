@@ -36,24 +36,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              
+              <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
+              <a class="nav-link {% block aboutActive %}{% endblock aboutActive %}" href="/about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
+              <a class="nav-link {% block contactActive %}{% endblock contactActive %}" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/blog">Blog</a>
+              <a class="nav-link {% block blogActive %}{% endblock blogActive %}" href="/blog">Blog</a>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" method="GET" action="/search">
             <input
-              class="form-control me-2"
+              class="form-control me-2  text-white bg-secondary bg-gradient"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              name="query"
+              id="query"
             />
             <button class="btn btn-outline-success" type="submit">
               Search
