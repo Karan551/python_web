@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from home.models import Contact
 from django.contrib import messages
+from blog.models import Post
 
 
 # Create your views here.
@@ -10,10 +11,11 @@ def home(request):
 
 def contact(request):
     if request.method == "POST":
-        name = request.POST["user_name"]
-        email = request.POST["email"]
+        # To get user details and remove extra spaces from both side
+        name = request.POST["user_name"].strip()
+        email = request.POST["email"].strip()
         phone = request.POST["contact-number"]
-        content = request.POST["issue"]
+        content = request.POST["issue"].strip()
         # If user name is less than two or blank display alert messages
         if name == " " or len(name) <= 2:
             messages.error(request, "Please fill form correctly.")
@@ -31,3 +33,11 @@ def contact(request):
 
 def about(request):
     return render(request, "home/about.html")
+
+
+def search(request):
+    query = request.GET["query"].strip()
+    post = Post.objects.filter(title__icontains=query).first()
+    print(post)
+    context = {"post": post}
+    return render(request, "home/search.html", context)
