@@ -36,40 +36,265 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              
-              <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" href="/">Home</a>
+              <a
+                class="nav-link {% block homeactive %}{% endblock homeactive %}"
+                aria-current="page"
+                href="/"
+                >Home</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link {% block aboutActive %}{% endblock aboutActive %}" href="/about">About</a>
+              <a
+                class="nav-link {% block aboutActive %}{% endblock aboutActive %}"
+                href="/about"
+                >About</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link {% block contactActive %}{% endblock contactActive %}" href="/contact">Contact</a>
+              <a
+                class="nav-link {% block contactActive %}{% endblock contactActive %}"
+                href="/contact"
+                >Contact</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link {% block blogActive %}{% endblock blogActive %}" href="/blog">Blog</a>
+              <a
+                class="nav-link {% block blogActive %}{% endblock blogActive %}"
+                href="/blog"
+                >Blog</a
+              >
             </li>
           </ul>
           <form class="d-flex" role="search" method="GET" action="/search">
             <input
-              class="form-control me-2  text-white bg-secondary bg-gradient"
+              class="form-control me-2 text-white bg-secondary bg-gradient"
               type="search"
               placeholder="Search"
               aria-label="Search"
               name="query"
               id="query"
+              required
             />
-            <button class="btn btn-outline-success" type="submit">
+            <button class="btn btn-outline-success" type="submit" id="btn">
               Search
             </button>
           </form>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-success mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#user-Login"
+          >
+            Login
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-success mx-2"
+            data-bs-toggle="modal"
+            data-bs-target="#user-signUp"
+          >
+            Sign Up
+          </button>
         </div>
       </div>
     </nav>
+    <!--This is a   signup modal-->
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="user-signUp"
+      tabindex="-1"
+      aria-labelledby="user-signUpLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="user-signUpLabel">
+              Sign Up Here :-
+            </h1>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="/signUp" method="post" id="sign-up-form">
+              {% csrf_token %}
+              <div class="mb-2">
+                <label for="user-input" class="form-label fs-5"
+                  >User Name:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="user-input"
+                  autocomplete="username"
+                  placeholder="Enter Your Name:"
+                  name="user-input"
+                />
+              </div>
+              <div class="mb-2">
+                <label for="fname" class="form-label fs-5">First Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="fname"
+                  id="fname"
+                  placeholder="Enter Your First Name:"
+                />
+              </div>
+              <div class="mb-2">
+                <label for="lname" class="form-label fs-5">Last Name:</label>
+                <input
+                  type="text"
+                  name="lname"
+                  id="lname"
+                  class="form-control"
+                  placeholder="Enter Your Last Name :"
+                />
+              </div>
+
+              <div class="mb-2">
+                <label for="user-email" class="form-label fs-5">Email:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="user-email"
+                  name="user-email"
+                  placeholder="Enter Your Email:"
+                />
+              </div>
+
+              <div class="mb-2">
+                <label for="user-password" class="form-label fs-5"
+                  >Choose Your Password :</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="user-password"
+                  name="user-password"
+                  placeholder="Enter Your Password:"
+                  autocomplete="new-password"
+                />
+              </div>
+
+              <div class="mb-2">
+                <label for="confirm-password" class="form-label fs-5"
+                  >Confirm Your Password :</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirm-password"
+                  placeholder="Confirm Your Password:"
+                  name="confirm-password"
+                  autocomplete="current-password"
+                />
+              </div>
+              <button class="btn btn-primary" type="submit" id="signup-btn">
+                Submit
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="user-Login"
+      tabindex="-1"
+      aria-labelledby="user-LoginLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="user-LoginLabel">User Login :-</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="">
+              <div class="mb-2">
+                <label for="login-email" class="form-label fs-5"
+                  >Enter Your Email:</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  name="login-email"
+                  id="login-email"
+                  autocomplete="username"
+                  placeholder="Enter Your Email :"
+                />
+              </div>
+              <div class="mb-2">
+                <label for="login-password" class="form-label fs-5"
+                  >Enter Your Password :</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  name="login-password"
+                  id="login-password"
+                  autocomplete="current-password"
+                  placeholder="Enter Your Password :"
+                />
+              </div>
+              <!-- Check Box-->
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="passwordCheckBox"
+                />
+                <label class="form-check-label" for="passwordCheckBox">
+                  Show Password
+                </label>
+              </div>
+
+              <button class="btn btn-primary" type="submit">Login</button>
+              <button
+                class="btn btn-secondary"
+                type="button"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!--This is an alert-->
     {% for message in messages %}
     <div
-      class="alert alert-{{message.tags}} alert-dismissible fade show mb-1"
-      role="alert" id="alert"
+      class="alert alert-{{message.tags}} alert-dismissible fade show mb-1 mx-2"
+      role="alert"
+      id="alert"
     >
       <strong>{{message}}</strong>
       <button
@@ -87,16 +312,51 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-       <!--Jquery cdn-->
+    <!--Jquery cdn-->
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
     <!---->
-      {% block js %}
-      {% endblock js %}
-  
- 
+    {% block js %} {% endblock js %}
+    <script>
+      //-----------To show password when user click on check box------
+      const checkBox = document.querySelector("#passwordCheckBox");
+      const passwordInput = document.querySelector("#login-password");
+      function showPassword() {
+        if (checkBox.checked) {
+          passwordInput.type = "text";
+        } else {
+          passwordInput.type = "password";
+        }
+      }
+      // apply event on check box when user click.
+      checkBox.addEventListener("click", showPassword);
+
+      // ----------To check that user password and current password are equal or not and User password or Current Password length is greater than 4.
+      
+      
+      /// -------------with jquery-------------
+      $(document).ready(function () {
+        $("#signup-btn").click(function (event) {
+          if ($("#user-password").val() !== $("#confirm-password").val()) {
+              // To prevent submit a form
+            event.preventDefault();
+             // To reset a form
+            $("#sign-up-form")[0].reset();
+            alert("Please Type current Password and user-password same.");
+          } else if ($("#user-password").val().length <= 4 || ("#confirmPassword").val().length <= 4) {
+            // To prevent submit a form
+            event.preventDefault();
+            // To reset a form
+            $("#sign-up-form")[0].reset();
+            alert(
+              "Please Type current Password length is greater than 4 and user password length is greater than 4."
+            );
+          }
+        });
+      });
+    </script>
   </body>
 </html>
