@@ -1,7 +1,8 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from home.models import Contact
 from django.contrib import messages
 from blog.models import Post
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -37,7 +38,45 @@ def about(request):
 
 def search(request):
     query = request.GET["query"].strip()
-    post = Post.objects.filter(title__icontains=query).first()
-    print(post)
-    context = {"post": post}
+    # If user query length is greater than 78 then show the alert.
+    if len(query) > 78:
+        # if query length is geater than 78 then create an empty queryset.
+        allPost = Post.objects.none()
+        messages.warning(
+            request,
+            "Your request was too large. Please Type appropriate keywords to find better result.",
+        )
+    else:
+        post = Post.objects.filter(title__icontains=query)
+        postAuthor = Post.objects.filter(author__icontains=query)
+        postContent = Post.objects.filter(content__icontains=query)
+        allPost = post.union(postContent, postAuthor)
+    if len(allPost) == 0 and not len(query) > 78:
+        messages.warning(
+            request, "Sorry No matches found . Please make sure you type correct word."
+        )
+    context = {"post": allPost.first(), "query": query, "length": len(allPost)}
     return render(request, "home/search.html", context)
+
+
+def handleSignUp(request):
+    if request.method == "POST":
+        username = request.POST["user-input"]
+        fname = request.POST["fname"]
+        lname = request.POST["lname"]
+        email = request.POST["user-email"]
+        user_password = request.POST["user-password"]
+        my_user = User.objects.create_user(username, email, user_password)
+        my_user.first_name = fname
+        my_user.last_name = lname
+        my_user.save()
+        return redirect("home")
+
+    return HttpResponse("404 this page was not found")
+
+
+def handleLogin(request):
+    pass
+
+def handleLogout(request):
+    pass
